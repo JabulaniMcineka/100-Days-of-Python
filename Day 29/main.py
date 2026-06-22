@@ -58,7 +58,6 @@ def save():
         with open("Day 29/password-manager-start/data.txt", "a") as data_file:
             data_file.write(write_to_file)
             website_entry.delete(0, END)
-            email_entry.delete(0, END)
             password_entry.delete(0, END)   
 
 
