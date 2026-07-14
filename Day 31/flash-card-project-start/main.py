@@ -4,16 +4,18 @@ import pandas as pd
 import random
 
 
-BACKGROUND_COLOR = "#B1DDC6"
-window = Tk()
-window.title("Flashy")
-window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
-
-
-data = pd.read_csv("Day 31/flash-card-project-start/data/french_words.csv")
-to_learn = data.to_dict(orient="records")
+to_learn = {}
 current_card = {}
 
+
+
+try:
+    data = pd.read_csv("Day 31/flash-card-project-start/data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pd.read_csv("Day 31/flash-card-project-start/data/french_words.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
 
 
 def next_card():
@@ -39,6 +41,7 @@ def is_known():
     data.to_csv("Day 31/flash-card-project-start/data/words_to_learn.csv", index=False)
     next_card()
 
+BACKGROUND_COLOR = "#B1DDC6"
 window = Tk()
 window.title("Flashy")
 window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
